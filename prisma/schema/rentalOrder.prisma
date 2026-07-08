@@ -1,1 +1,39 @@
+model RentalOrder {
+  id            String         @id @default(uuid())
 
+  // Foreign Keys
+  customerId    String
+  gearItemId    String
+
+  // Rental Details
+  quantity      Int
+  startDate     DateTime
+  endDate       DateTime
+  totalDays     Int
+
+  // Pricing Snapshot
+  pricePerDay   Decimal        @db.Decimal(10, 2)
+  totalAmount   Decimal        @db.Decimal(10, 2)
+
+  // Status
+  status        RentalStatus   @default(PLACED)
+
+  // Timestamps
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  // Relations
+  customer      User           @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  gearItem      GearItem       @relation(fields: [gearItemId], references: [id], onDelete: Restrict)
+
+  // One-to-One Payment
+  payment       Payment?
+
+  @@index([customerId])
+  @@index([gearItemId])
+  @@index([status])
+  @@index([startDate])
+  @@index([endDate])
+
+  @@map("rental_orders")
+}

@@ -1,1 +1,25 @@
+model Review {
+  id          String    @id @default(uuid())
 
+  // Foreign Keys
+  customerId  String
+  gearItemId  String
+
+  // Review Details
+  rating      Int
+  comment     String?
+
+  // Timestamps
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Relations
+  customer    User      @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  gearItem    GearItem  @relation(fields: [gearItemId], references: [id], onDelete: Cascade)
+
+  @@unique([customerId, gearItemId])
+  @@index([gearItemId])
+  @@index([customerId])
+
+  @@map("reviews")
+}
