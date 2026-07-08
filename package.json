@@ -2,13 +2,13 @@
   "name": "sports-equipment-rental-backend",
   "version": "0.0.1",
   "description": "Read me file create for gearup project",
-  "homepage": "https://github.com/dev-peyas9911/GearUp-Backend#readme",
+  "homepage": "https://github.com/dev-peyas9911/Sports-Equipment-Rental-Backend#readme",
   "bugs": {
-    "url": "https://github.com/dev-peyas9911/GearUp-Backend/issues"
+    "url": "https://github.com/dev-peyas9911/Sports-Equipment-Rental-Backend/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dev-peyas9911/GearUp-Backend.git"
+    "url": "git+https://github.com/dev-peyas9911/Sports-Equipment-Rental-Backend.git"
   },
   "license": "ISC",
   "author": "",
