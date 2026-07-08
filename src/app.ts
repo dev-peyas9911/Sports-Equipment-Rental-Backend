@@ -2,6 +2,7 @@ import express, { Application, Request, Response, urlencoded } from "express";
 import cors from "cors";
 import config from "./config";
 import cookieParser from "cookie-parser";
+import { authRoutes } from "./modules/auth/auth.route";
 
 const app: Application = express();
 
@@ -18,8 +19,9 @@ app.use(cookieParser());
 
 // API
 app.get("/", (req: Request, res: Response) => {
-    res.send("This is Server");
-})
+  res.send("This is Server");
+});
 
+app.use("/api/auth", authRoutes);
 
 export default app;
