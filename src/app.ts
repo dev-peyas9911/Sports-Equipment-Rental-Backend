@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import { authRoutes } from "./modules/auth/auth.route";
 import { userRoutes } from "./modules/user/user.route";
 import { categoryRoutes } from "./modules/category/category.route";
+import { providerRoutes } from "./modules/provider/provider.route";
 
 const app: Application = express();
 
@@ -29,5 +30,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 
 app.use("/api/category", categoryRoutes);
+
+app.use("/api/provider", providerRoutes);
 
 export default app;
