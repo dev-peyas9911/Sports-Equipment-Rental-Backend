@@ -1,3 +1,4 @@
+import { UserStatus } from "../../../generated/prisma/enums";
 import { prisma } from "../../lib/prisma";
 
 const getAllUsersFromDB = async () => {
@@ -7,6 +8,7 @@ const getAllUsersFromDB = async () => {
       name: true,
       email: true,
       role: true,
+      status: true,
       phone: true,
       address: true,
       createdAt: true,
@@ -20,6 +22,20 @@ const getAllUsersFromDB = async () => {
   return result;
 };
 
+const updateUserStatusIntoDB = async (userId: string, payload: { status: UserStatus }) => {
+    const result = await prisma.user.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      status: payload.status,
+    },
+  });
+
+  return result;
+}
+
 export const adminService = {
   getAllUsersFromDB,
+  updateUserStatusIntoDB
 };
