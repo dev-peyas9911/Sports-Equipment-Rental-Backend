@@ -1,5 +1,5 @@
 import { prisma } from "../../lib/prisma";
-import { IGearPayload } from "./provider.interface";
+import { IGearPayload, IUpdateOrderStatusPayload } from "./provider.interface";
 
 const createGearIntoDB = async (providerId: string, payload: IGearPayload) => {
   await prisma.category.findUniqueOrThrow({
@@ -121,9 +121,40 @@ const getOrderFromDB = async (providerId: string) => {
   return result;
 };
 
+const updateOrderStatusIntoDB = async (
+  providerId: string,
+  orderId: string,
+  payload: IUpdateOrderStatusPayload,
+) => {
+  const order = await prisma.rentalOrder.findFirst({
+    where: {
+      id: orderId,
+      gearItem: {
+        providerId,
+      },
+    },
+  });
+
+  if (!order) {
+    throw new Error("Order not found.");
+  }
+
+  const result = await prisma.rentalOrder.update({
+    where: {
+      id: orderId,
+    },
+    data: {
+      status: payload.status,
+    },
+  });
+
+  return result;
+};
+
 export const providerService = {
   createGearIntoDB,
   updateGearIntoDB,
   deleteGearIntoDB,
   getOrderFromDB,
+  updateOrderStatusIntoDB,
 };

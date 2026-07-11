@@ -1,5 +1,5 @@
 import { Prisma } from "../../../generated/prisma/client";
-import { GearCondition } from "../../../generated/prisma/enums";
+import { GearCondition, RentalStatus } from "../../../generated/prisma/enums";
 
 
 
@@ -15,4 +15,8 @@ export interface IGearPayload {
   condition: GearCondition;
   images: string[];
   specifications?: Prisma.InputJsonValue;
+}
+
+export interface IUpdateOrderStatusPayload {
+  status: RentalStatus;
 }

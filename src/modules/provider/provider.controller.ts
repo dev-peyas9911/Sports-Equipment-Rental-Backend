@@ -79,11 +79,27 @@ const getOrder = catchAsync(async(req:Request,res:Response,next:NextFunction) =>
       message: "All orders retrived successfully",
       data: { result },
     });
-})
+});
+
+const updateOrderStatus = catchAsync(async(req:Request,res:Response,next:NextFunction) => {
+  const providerId = req.user?.id;
+  const orderId = req.params.id;
+  const payload = req.body;
+
+  const result = await providerService.updateOrderStatusIntoDB(providerId as string, orderId as string, payload);
+
+  sendResponse(res, {
+      success: true,
+      statusCode: httpStatus.CREATED,
+      message: "Updated order status successfully",
+      data: { result },
+    });
+});
 
 export const providerController = {
   createGear,
   updateGear,
   deleteGear,
-  getOrder
+  getOrder,
+  updateOrderStatus
 };
