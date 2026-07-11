@@ -65,7 +65,7 @@ const createRentalOrderIntoDB = async (
 };
 
 const getRentalOrdersFromDB = async (customerId: string) => {
-    const result = await prisma.rentalOrder.findMany({
+  const result = await prisma.rentalOrder.findMany({
     where: {
       customerId,
     },
@@ -86,9 +86,46 @@ const getRentalOrdersFromDB = async (customerId: string) => {
   });
 
   return result;
-}
+};
+
+const getRentalOrderDetailsFromDB = async (
+  customerId: string,
+  orderId: string,
+) => {
+  const result = await prisma.rentalOrder.findFirst({
+    where: {
+      id: orderId,
+      customerId,
+    },
+    include: {
+      gearItem: {
+        select: {
+          id: true,
+          name: true,
+          description: true,
+          pricePerDay: true,
+          images: true,
+          provider: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  if (!result) {
+    throw new Error("Rental order not found.");
+  }
+
+  return result;
+};
 
 export const rentalService = {
   createRentalOrderIntoDB,
-  getRentalOrdersFromDB
+  getRentalOrdersFromDB,
+  getRentalOrderDetailsFromDB,
 };

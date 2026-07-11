@@ -9,4 +9,6 @@ router.post("/", auth(Role.CUSTOMER), rentalController.createRentalOrder);
 
 router.get("/", auth(Role.CUSTOMER), rentalController.getRentalOrders);
 
+router.get("/:id", auth(Role.CUSTOMER), rentalController.getRentalOrderDetails);
+
 export const rentalRoutes = router;
