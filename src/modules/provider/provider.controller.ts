@@ -68,8 +68,22 @@ const deleteGear = catchAsync(
   },
 );
 
+const getOrder = catchAsync(async(req:Request,res:Response,next:NextFunction) => {
+  const providerId = req.user?.id;
+
+  const result = await providerService.getOrderFromDB(providerId as string);
+
+  sendResponse(res, {
+      success: true,
+      statusCode: httpStatus.CREATED,
+      message: "All orders retrived successfully",
+      data: { result },
+    });
+})
+
 export const providerController = {
   createGear,
   updateGear,
-  deleteGear
+  deleteGear,
+  getOrder
 };

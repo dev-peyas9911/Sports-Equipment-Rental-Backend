@@ -11,4 +11,6 @@ router.put("/gear/:id", auth(Role.PROVIDER), providerController.updateGear);
 
 router.delete("/gear/:id", auth(Role.PROVIDER), providerController.deleteGear);
 
+router.get("/orders", auth(Role.PROVIDER), providerController.getOrder);
+
 export const providerRoutes = router;

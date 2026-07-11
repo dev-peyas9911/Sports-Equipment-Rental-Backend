@@ -77,8 +77,53 @@ const deleteGearIntoDB = async (providerId: string, gearId: string) => {
   return deletedGear;
 };
 
+const getOrderFromDB = async (providerId: string) => {
+  const result = await prisma.rentalOrder.findMany({
+    where: {
+      gearItem: {
+        providerId: providerId,
+      },
+    },
+    select: {
+      id: true,
+      customerId: true,
+      gearItemId: true,
+      quantity: true,
+      startDate: true,
+      endDate: true,
+      totalDays: true,
+      pricePerDay: true,
+      totalAmount: true,
+      status: true,
+      createdAt: true,
+      updatedAt: true,
+      gearItem: {
+        select: {
+          id: true,
+          name: true,
+          providerId: true,
+        },
+      },
+      customer: {
+        select: {
+          id: true,
+          name: true,
+          email: true,
+        },
+      },
+    },
+
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  return result;
+};
+
 export const providerService = {
   createGearIntoDB,
   updateGearIntoDB,
   deleteGearIntoDB,
+  getOrderFromDB,
 };
