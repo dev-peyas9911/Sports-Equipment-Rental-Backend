@@ -14,6 +14,7 @@ import { paymentController } from "./modules/payment/payment.controller";
 import { reviewRoutes } from "./modules/review/review.route";
 import { notFound } from "./middlewares/notFound";
 import { globalErrorHandler } from "./middlewares/globalErrorHandler";
+import { sendResponse } from "./utils/sendResponse";
 
 const app: Application = express();
 
@@ -39,7 +40,10 @@ app.use(cookieParser());
 
 // API
 app.get("/", (req: Request, res: Response) => {
-  res.send("This is Server");
+  res.json({
+    status: 200,
+    message: "This is server"
+  })
 });
 
 app.use("/api/auth", authRoutes);
