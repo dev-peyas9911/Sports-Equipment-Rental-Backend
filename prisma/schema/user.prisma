@@ -5,14 +5,14 @@ model User {
   password  String
   role      Role       @default(CUSTOMER)
   status    UserStatus @default(ACTIVE)
-  phone     String    
+  phone     String
   address   String
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
 
-  gearItems      GearItem[]
-  rentalOrders   RentalOrder[]
-  reviews        Review[]
+  gearItems    GearItem[]
+  rentalOrders RentalOrder[]
+  reviews      Review[]
 
   @@map("users")
 }

@@ -9,6 +9,8 @@ import { providerRoutes } from "./modules/provider/provider.route";
 import { gearRoutes } from "./modules/gear/gear.route";
 import { adminRoutes } from "./modules/admin/admin.route";
 import { rentalRoutes } from "./modules/rental/rental.route";
+import { paymentRoutes } from "./modules/payment/payment.route";
+import { paymentController } from "./modules/payment/payment.controller";
 
 const app: Application = express();
 
@@ -19,6 +21,17 @@ app.use(
     credentials: true,
   }),
 );
+
+// app.use("/api/payments/confirm", express.raw({ type: 'application/json' }));
+// Stripe Webhook (Raw Body)
+app.post(
+  "/api/payments/confirm",
+  express.raw({ type: "application/json" }),
+  paymentController.confirmPayment
+);
+
+
+
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -43,5 +56,7 @@ app.use("/api/gear", gearRoutes);
 app.use("/api/admin", adminRoutes);
 
 app.use("/api/rentals", rentalRoutes);
+
+app.use("/api/payments", paymentRoutes);
 
 export default app;
