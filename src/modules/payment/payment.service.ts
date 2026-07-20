@@ -11,7 +11,6 @@ const createPaymentIntoDB = async (
 ) => {
   const { rentalOrderId } = payload;
 
-
   const rentalOrder = await prisma.rentalOrder.findFirst({
     where: {
       id: rentalOrderId,
@@ -179,10 +178,43 @@ const getPaymentsFromDB = async (customerId: string) => {
   return payments;
 };
 
+const getSinglePaymentFromDB = async (
+  customerId: string,
+  paymentId: string,
+) => {
+  const payment = await prisma.payment.findFirst({
+    where: {
+      id: paymentId,
+      rentalOrder: {
+        customerId,
+      },
+    },
+    include: {
+      rentalOrder: {
+        include: {
+          gearItem: {
+            select: {
+              id: true,
+              name: true,
+              // image: true,
+              // dailyRate: true,
+            },
+          },
+        },
+      },
+    },
+  });
 
+  if (!payment) {
+    throw new Error("Payment not found.");
+  }
+
+  return payment;
+};
 
 export const paymentService = {
   createPaymentIntoDB,
   confirmPaymentIntoDB,
-  getPaymentsFromDB
+  getPaymentsFromDB,
+  getSinglePaymentFromDB
 };

@@ -60,8 +60,28 @@ const getPayments = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getSinglePayment = catchAsync(
+  async (req: Request, res: Response) => {
+    const customerId = req.user?.id as string;
+    const paymentId = req.params.id;
+
+    const result = await paymentService.getSinglePaymentFromDB(
+      customerId,
+      paymentId as string
+    );
+
+    sendResponse(res, {
+      success: true,
+      statusCode: httpStatus.OK,
+      message: "Payment details retrieved successfully.",
+      data: result,
+    });
+  }
+);
+
 export const paymentController = {
     createPayment,
     confirmPayment,
-    getPayments
+    getPayments,
+    getSinglePayment
 }

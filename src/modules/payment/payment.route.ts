@@ -17,4 +17,6 @@ router.post("/create", auth(Role.CUSTOMER), paymentController.createPayment);
 
 router.get("/", auth(Role.CUSTOMER), paymentController.getPayments);
 
+router.get("/:id", auth(Role.CUSTOMER), paymentController.getSinglePayment);
+
 export const paymentRoutes = router;
