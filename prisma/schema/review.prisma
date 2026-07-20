@@ -4,6 +4,7 @@ model Review {
   // Foreign Keys
   customerId String
   gearItemId String
+  rentalOrderId String   @unique
 
   // Review Details
   rating  Int
@@ -16,6 +17,7 @@ model Review {
   // Relations
   customer User     @relation(fields: [customerId], references: [id], onDelete: Cascade)
   gearItem GearItem @relation(fields: [gearItemId], references: [id], onDelete: Cascade)
+  rentalOrder   RentalOrder @relation(fields: [rentalOrderId], references: [id], onDelete: Cascade)
 
   @@unique([customerId, gearItemId])
   @@index([gearItemId])

@@ -212,9 +212,11 @@ const getSinglePaymentFromDB = async (
   return payment;
 };
 
+
+
 export const paymentService = {
   createPaymentIntoDB,
   confirmPaymentIntoDB,
   getPaymentsFromDB,
-  getSinglePaymentFromDB
+  getSinglePaymentFromDB,
 };

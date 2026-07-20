@@ -11,6 +11,7 @@ import { adminRoutes } from "./modules/admin/admin.route";
 import { rentalRoutes } from "./modules/rental/rental.route";
 import { paymentRoutes } from "./modules/payment/payment.route";
 import { paymentController } from "./modules/payment/payment.controller";
+import { reviewRoutes } from "./modules/review/review.route";
 
 const app: Application = express();
 
@@ -27,10 +28,8 @@ app.use(
 app.post(
   "/api/payments/confirm",
   express.raw({ type: "application/json" }),
-  paymentController.confirmPayment
+  paymentController.confirmPayment,
 );
-
-
 
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
@@ -58,5 +57,7 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/rentals", rentalRoutes);
 
 app.use("/api/payments", paymentRoutes);
+
+app.use("/api/reviews", reviewRoutes);
 
 export default app;

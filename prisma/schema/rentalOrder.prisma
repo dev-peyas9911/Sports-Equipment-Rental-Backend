@@ -28,6 +28,7 @@ model RentalOrder {
 
   // One-to-One Payment
   payment Payment?
+  review Review?
 
   @@index([customerId])
   @@index([gearItemId])

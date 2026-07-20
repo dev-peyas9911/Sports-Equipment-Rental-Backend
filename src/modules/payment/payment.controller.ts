@@ -26,7 +26,7 @@ const createPayment = catchAsync(async(req:Request, res:Response, next: NextFunc
 
 const confirmPayment = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    console.log("Webhook recieved");
+    // console.log("Webhook recieved");
     const signature = req.headers["stripe-signature"] as string;
 
     if (!signature) {
