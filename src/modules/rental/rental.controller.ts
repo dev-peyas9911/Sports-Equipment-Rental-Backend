@@ -25,7 +25,7 @@ const getRentalOrders = catchAsync(async(req:Request, res:Response, next: NextFu
 
     sendResponse(res, {
       success: true,
-      statusCode: httpStatus.CREATED,
+      statusCode: httpStatus.OK,
       message: "Rental orders retrived successfully",
       data: { result },
     });
@@ -40,7 +40,7 @@ const getRentalOrderDetails = catchAsync(async(req:Request, res: Response, next:
 
     sendResponse(res, {
       success: true,
-      statusCode: httpStatus.CREATED,
+      statusCode: httpStatus.OK,
       message: "Order details retrived successfully",
       data: { result },
     });

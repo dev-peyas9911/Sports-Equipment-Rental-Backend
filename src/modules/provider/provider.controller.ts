@@ -40,7 +40,7 @@ const updateGear = catchAsync(
 
     sendResponse(res, {
       success: true,
-      statusCode: httpStatus.CREATED,
+      statusCode: httpStatus.OK,
       message: "Gear Updated successfully",
       data: { result },
     });
@@ -61,7 +61,7 @@ const deleteGear = catchAsync(
 
     sendResponse(res, {
       success: true,
-      statusCode: httpStatus.CREATED,
+      statusCode: httpStatus.OK,
       message: "Gear deleted successfully",
       data: { result },
     });
@@ -75,7 +75,7 @@ const getOrder = catchAsync(async(req:Request,res:Response,next:NextFunction) =>
 
   sendResponse(res, {
       success: true,
-      statusCode: httpStatus.CREATED,
+      statusCode: httpStatus.OK,
       message: "All orders retrived successfully",
       data: { result },
     });
@@ -90,7 +90,7 @@ const updateOrderStatus = catchAsync(async(req:Request,res:Response,next:NextFun
 
   sendResponse(res, {
       success: true,
-      statusCode: httpStatus.CREATED,
+      statusCode: httpStatus.OK,
       message: "Updated order status successfully",
       data: { result },
     });

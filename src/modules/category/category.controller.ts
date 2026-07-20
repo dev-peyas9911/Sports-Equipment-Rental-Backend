@@ -24,7 +24,7 @@ const getAllCategories = catchAsync(
 
     sendResponse(res, {
       success: true,
-      statusCode: httpStatus.CREATED,
+      statusCode: httpStatus.OK,
       message: "All categories are retrived successfully",
       data: { result },
     });

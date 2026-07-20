@@ -10,7 +10,7 @@ const getAllUsers = catchAsync(
 
     sendResponse(res, {
       success: true,
-      statusCode: httpStatus.CREATED,
+      statusCode: httpStatus.OK,
       message: "All users are retrived successfully",
       data: { result },
     });
@@ -27,7 +27,7 @@ const updateUserStatus = catchAsync(
 
     sendResponse(res, {
       success: true,
-      statusCode: httpStatus.CREATED,
+      statusCode: httpStatus.OK,
       message: "User status updated successfully",
       data: { result },
     });
@@ -39,7 +39,7 @@ const getAllGear = catchAsync(async(req:Request, res:Response, next: NextFunctio
 
   sendResponse(res, {
       success: true,
-      statusCode: httpStatus.CREATED,
+      statusCode: httpStatus.OK,
       message: "All Gears are retrived successfully",
       data: { result },
     });
@@ -50,7 +50,7 @@ const getAllRentalOrder = catchAsync(async(req:Request, res:Response, next: Next
 
   sendResponse(res, {
       success: true,
-      statusCode: httpStatus.CREATED,
+      statusCode: httpStatus.OK,
       message: "All Rental orders are retrived successfully",
       data: { result },
     });

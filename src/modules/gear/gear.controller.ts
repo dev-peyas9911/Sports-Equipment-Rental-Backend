@@ -12,7 +12,7 @@ const getAllGear = catchAsync(
 
     sendResponse(res, {
       success: true,
-      statusCode: httpStatus.CREATED,
+      statusCode: httpStatus.OK,
       message: "All gear-items are retrived successfully",
       data: result.data,
       meta: result.meta
@@ -27,7 +27,7 @@ const getSingleGear = catchAsync(async (req: Request, res: Response, next: NextF
 
     sendResponse(res, {
       success: true,
-      statusCode: httpStatus.CREATED,
+      statusCode: httpStatus.OK,
       message: "Gear-item is retrived successfully",
       data: {result}
     });
