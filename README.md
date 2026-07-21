@@ -1,7 +1,7 @@
-# 🏋️ GearUp Backend API
+# 🏋️ Sports Equipment Rental Backend API
 
 <p align="center">
-  <img src="https://i.imgur.com/0M5YQ0p.png" width="180" alt="GearUp Logo"/>
+  <img src="https://i.ibb.co.com/FbRBbS8p/sports-equipment-rental.jpg" width="180" alt="GearUp Logo"/>
 </p>
 
 <p align="center">
@@ -264,7 +264,7 @@ git clone https://github.com/dev-peyas9911/Sports-Equipment-Rental-Backend
 ## Navigate to Project
 
 ```bash
-cd gearup-backend
+cd Sports-Equipment-Rental-Backend
 ```
 
 ## Install Dependencies
